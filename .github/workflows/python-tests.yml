@@ -1,18 +1,28 @@
-name: Python portfolio tests
-
+name: Portfolio quality checks
 on:
   push:
   pull_request:
-
 jobs:
-  tests:
+  python-reference-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Run unit tests
+      - name: Test Python reference implementations
         run: python -m unittest discover -s tests -v
+  interactive-demo-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify module syntax
+        run: |
+          node --check assets/engines.mjs
+          node --check assets/crm-ui.mjs
+          node --check assets/tpm-ui.mjs
+      - name: Test deterministic business rules
+        run: node --test tests/demo-engines.test.mjs
