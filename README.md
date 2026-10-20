@@ -1,37 +1,47 @@
-# Technical Program Management Portfolio
+# Technical Delivery Lab
 
-Practical, small-scale demonstrations of enterprise integration and technical delivery practices. These examples use **synthetic data only** and are not extracts from private KMOV systems or customer environments.
+**Interactive technical program management portfolio** — two practical, browser-based demonstrations of enterprise integration and cross-functional software delivery.
 
-## Projects
+> **Live website (requires GitHub Pages activation):** https://krissortegal83.github.io/technical-program-management-portfolio/
 
-### 1. [CRM Synchronization Demo](crm-integration-demo/)
-A dependency-free Python example demonstrating webhook-like CRM ingestion, deduplication, idempotent updates, conflict handling and audit-friendly output.
+## Explore the demos
 
-### 2. [Technical Program Health Dashboard](tpm-program-dashboard/)
-A Python command-line report for tracking project milestones, cross-team dependencies, delivery risks and overdue work. Uses JSON sample data and generates a readable Markdown status report.
+| Demo | What you can do | Open source |
+| --- | --- | --- |
+| **CRM Integration Console** | Process contact events, replay batches, test idempotency and stale updates, flag conflicts, export audit JSON | [Interactive source](crm-integration-demo/index.html) · [Python implementation](crm-integration-demo/crm_sync.py) |
+| **Technical Program Command Center** | Explore an AI-feature delivery roadmap, resolve blockers, simulate delays, adjust risk levels, export executive status Markdown | [Interactive source](tpm-program-dashboard/index.html) · [Python implementation](tpm-program-dashboard/program_dashboard.py) |
 
-## How to run
+The interactive site uses static HTML/CSS and native JavaScript modules. It runs entirely in the visitor's browser: **no API credentials, backend server, login, paid dependency or real business data**.
 
-Requires Python 3.10+; no external services, API keys or paid libraries.
+### Quality checks
+
+[![Portfolio quality checks](https://github.com/krissortegal83/technical-program-management-portfolio/actions/workflows/python-tests.yml/badge.svg)](https://github.com/krissortegal83/technical-program-management-portfolio/actions/workflows/python-tests.yml)
+
+- Python unit tests for both reference programs.
+- Node.js tests for integration and program-health decision logic.
+- GitHub Actions for syntax validation and continuous integration.
 
 ```bash
 python crm-integration-demo/crm_sync.py
 python tpm-program-dashboard/program_dashboard.py
 python -m unittest discover -s tests -v
+node --test tests/demo-engines.test.mjs
 ```
 
-## What this demonstrates
+### GitHub Pages: one-time setup
 
-- Systems thinking: contracts, integration boundaries, idempotency and auditability
-- Technical delivery: milestones, risks, dependencies and stakeholder reporting
-- Operational quality: unit tests, deterministic sample data and GitHub Actions CI
+A repository admin needs to select **Settings → Pages → Build and deployment → Source: GitHub Actions** once. The [Pages publishing workflow](.github/workflows/deploy-pages.yml) then deploys the static site automatically after pushes to `main`. Until that setting is enabled, the source files remain public but the `github.io` URL may return a 404.
 
-## Scope and provenance
+### Design rationale
 
-Created as **portfolio demonstrations (October 2026)** to explain technical concepts and program-management decisions. They are not claims of production software ownership or deployments. All organization names, contacts and records in examples are fictional. Technical concepts are informed by enterprise integration, CRM automation and cross-functional delivery experience. Code and documentation were created with AI assistance and are provided for review and learning.
+- **CRM reliability:** unique identity, timestamp normalization, no duplicate writes after replay, auditable decisions and conflict escalation.
+- **Program delivery:** transparent task ownership, validated dependency graphs, visible risk thresholds, milestones and action-driven status reports.
+- **Engineering communication:** a technical program manager can use both demos to discuss delivery expectations, integration contracts and escalation decisions.
 
-## Security
+**Important limitations:** these projects are *recent portfolio demonstrations*, not production deployments or claims of prior professional software development. All contacts, teams, businesses and milestones are **fictional**. Real production systems would require security review, robust permissions, observability, persistence, reliable event identifiers and further testing. AI-assisted code development was used in creating these exercises.
 
-No real customer records, passwords, private API endpoints, credentials or data from private repositories are included.
+## Privacy & license
 
-MIT License.
+No private KMOV files, real customer records, secrets or credentials are included. MIT licensed.
+
+Created October 2026 · Christian Ortega.
