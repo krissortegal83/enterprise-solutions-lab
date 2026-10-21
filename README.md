@@ -1,6 +1,6 @@
 # Technical Delivery Lab
 
-**Interactive technical program management portfolio** — two practical, browser-based demonstrations of enterprise integration and cross-functional software delivery.
+**Interactive technical program management portfolio** — three practical, browser-based demonstrations of customer success, enterprise integration and cross-functional software delivery.
 
 > **Live website (requires GitHub Pages activation):** https://krissortegal83.github.io/technical-program-management-portfolio/
 
@@ -8,16 +8,16 @@
 
 | Demo | What you can do | Open source |
 | --- | --- | --- |
-| **CRM Integration Console** | Process contact events, replay batches, test idempotency and stale updates, flag conflicts, export audit JSON | [Interactive source](crm-integration-demo/index.html) · [Python implementation](crm-integration-demo/crm_sync.py) |
+| **Customer Success Intelligence Center** | Explore 35 fictional enterprise accounts, prioritize retention risk, run adoption playbooks, generate bilingual outreach and export an executive review | [Interactive demo](customer-success-intelligence/index.html) · [Architecture and scoring](customer-success-intelligence/docs/ARCHITECTURE.md) |\n| **CRM Integration Console** | Process contact events, replay batches, test idempotency and stale updates, flag conflicts, export audit JSON | [Interactive source](crm-integration-demo/index.html) · [Python implementation](crm-integration-demo/crm_sync.py) |
 | **Technical Program Command Center** | Explore an AI-feature delivery roadmap, resolve blockers, simulate delays, adjust risk levels, export executive status Markdown | [Interactive source](tpm-program-dashboard/index.html) · [Python implementation](tpm-program-dashboard/program_dashboard.py) |
 
-The interactive site uses static HTML/CSS and native JavaScript modules. It runs entirely in the visitor's browser: **no API credentials, backend server, login, paid dependency or real business data**.
+The interactive site uses static HTML/CSS and native JavaScript modules. The customer success case study is a standalone simulation using transparent, weighted account-health rules. It runs entirely in the visitor's browser: **no API credentials, backend server, login, paid dependency or real business data**.
 
 ### Quality checks
 
 [![Portfolio quality checks](https://github.com/krissortegal83/technical-program-management-portfolio/actions/workflows/python-tests.yml/badge.svg)](https://github.com/krissortegal83/technical-program-management-portfolio/actions/workflows/python-tests.yml)
 
-- Python unit tests for both reference programs.
+- Python unit tests for both technical delivery reference programs.\n- Nine native JavaScript tests for customer-success data integrity, risk, reporting and engagement scenarios (`cd customer-success-intelligence && npm run verify`).
 - Node.js tests for integration and program-health decision logic.
 - GitHub Actions for syntax validation and continuous integration.
 
