@@ -1,0 +1,12 @@
+{
+  "name": "enterprise-delivery-lab",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs customer-success-intelligence/tests/*.test.mjs",
+    "check": "node scripts/check-site.mjs",
+    "verify": "npm run check && npm test"
+  },
+  "license": "MIT"
+}

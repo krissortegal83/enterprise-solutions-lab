@@ -1,47 +1,66 @@
-# Technical Delivery Lab
+# Enterprise Delivery Lab — Christian Ortega Lugo
 
-**Interactive technical program management portfolio** — three practical, browser-based demonstrations of customer success, enterprise integration and cross-functional software delivery.
+**Healthcare IT · ERP · CRM automation · implementation · customer adoption**
 
-> **Live website (requires GitHub Pages activation):** https://krissortegal83.github.io/technical-program-management-portfolio/
+[Open the interactive portfolio](https://krissortegal83.github.io/technical-program-management-portfolio/) · [LinkedIn](https://www.linkedin.com/in/christian-ortega-lugo-7523a518b/) · [Quality and scope](docs/QUALITY.md)
 
-## Explore the demos
+## Español
 
-| Demo | What you can do | Open source |
-| --- | --- | --- |
-| **Customer Success Intelligence Center** | Explore 35 fictional enterprise accounts, prioritize retention risk, run adoption playbooks, generate bilingual outreach and export an executive review | [Interactive demo](customer-success-intelligence/index.html) · [Architecture and scoring](customer-success-intelligence/docs/ARCHITECTURE.md) |\n| **CRM Integration Console** | Process contact events, replay batches, test idempotency and stale updates, flag conflicts, export audit JSON | [Interactive source](crm-integration-demo/index.html) · [Python implementation](crm-integration-demo/crm_sync.py) |
-| **Technical Program Command Center** | Explore an AI-feature delivery roadmap, resolve blockers, simulate delays, adjust risk levels, export executive status Markdown | [Interactive source](tpm-program-dashboard/index.html) · [Python implementation](tpm-program-dashboard/program_dashboard.py) |
+Portafolio de consultoría de negocio y tecnología: seis casos interactivos para explorar interoperabilidad hospitalaria, compras e inventarios, automatización comercial, preparación de implementaciones, adopción de clientes y revisión documental. Datos ficticios, sin cuentas ni servicios de pago para visitar las demos.
 
-The interactive site uses static HTML/CSS and native JavaScript modules. The customer success case study is a standalone simulation using transparent, weighted account-health rules. It runs entirely in the visitor's browser: **no API credentials, backend server, login, paid dependency or real business data**.
+## Explore the work
 
-### Quality checks
+| Case | Business question | Demo / implementation |
+|---|---|---|
+| **Hospital interoperability** | Validate a radiology order, recover offline deliveries and block patient mismatches. | [Live demo](https://krissortegal83.github.io/technical-program-management-portfolio/healthcare-integration-lab/) · [Case study](healthcare-integration-lab/README.md) |
+| **Procure-to-pay controls** | Receive partial deliveries, inspect stock and hold an invoice when the evidence does not match. | [Live demo](https://krissortegal83.github.io/technical-program-management-portfolio/erp-procure-to-pay/) · [Case study](erp-procure-to-pay/README.md) |
+| **Commercial workflow** | Qualify a lead, agree scope and prepare an accepted handover to the right specialist. | [Live demo](https://krissortegal83.github.io/technical-program-management-portfolio/commercial-automation/) · [Case study](commercial-automation/README.md) |
+| **Evidence before go-live** | Review UAT, data reconciliation, rollback and user readiness before recommending release. | [Live demo](https://krissortegal83.github.io/technical-program-management-portfolio/implementation-readiness/) · [Case study](implementation-readiness/README.md) |
+| **Adoption & account health** | Explore 35 fictional accounts, explain risk signals and prepare customer and leadership reviews. | [Live demo](https://krissortegal83.github.io/technical-program-management-portfolio/customer-success-intelligence/) · [Case study](customer-success-intelligence/README.md) |
+| **Human-reviewed automation** | Extract invoice text, correct exceptions and require explicit human review before approval. | [Live demo](https://krissortegal83.github.io/technical-program-management-portfolio/document-workflow/) · [Case study](document-workflow/README.md) |
 
-[![Portfolio quality checks](https://github.com/krissortegal83/technical-program-management-portfolio/actions/workflows/python-tests.yml/badge.svg)](https://github.com/krissortegal83/technical-program-management-portfolio/actions/workflows/python-tests.yml)
+Additional exercises: [CRM reliability](crm-integration-demo/) and [program dependencies](tpm-program-dashboard/).
 
-- Python unit tests for both technical delivery reference programs.\n- Nine native JavaScript tests for customer-success data integrity, risk, reporting and engagement scenarios (`cd customer-success-intelligence && npm run verify`).
-- Node.js tests for integration and program-health decision logic.
-- GitHub Actions for syntax validation and continuous integration.
+## Professional context
+
+Mechatronics Engineer and MBA from Tecnológico de Monterrey. Background in healthcare implementations and support at AGFA HealthCare, professional services at Epicor, Dynamics 365 project coordination, and earlier industrial engineering. Commercial collaborations include Browith, Consultoría Montag and Sperto Digital. [Full experience and exact role scope on LinkedIn](https://www.linkedin.com/in/christian-ortega-lugo-7523a518b/).
+
+These new exercises demonstrate an approach to discovery, integration, operational controls and delivery. They are not employer source code or historical client deliverables. Technology names describe professional context or a documented demonstration subset; they do not imply endorsements or live vendor integrations.
+
+## Run locally
+
+Requires Python 3 for the static server, Node.js 22+ for JavaScript tests, and Python 3.11+ for reference tests. No npm installation required.
 
 ```bash
-python crm-integration-demo/crm_sync.py
-python tpm-program-dashboard/program_dashboard.py
-python -m unittest discover -s tests -v
-node --test tests/demo-engines.test.mjs
+python -m http.server 8000
+# Open http://localhost:8000/
 ```
 
-### GitHub Pages: one-time setup
+```bash
+npm run verify
+python -m unittest discover -s tests -v
+```
 
-A repository admin needs to select **Settings → Pages → Build and deployment → Source: GitHub Actions** once. The [Pages publishing workflow](.github/workflows/deploy-pages.yml) then deploys the static site automatically after pushes to `main`. Until that setting is enabled, the source files remain public but the `github.io` URL may return a 404.
+The new labs share pure rule functions in `assets/business-rules.mjs` and an accessible UI in `assets/lab-ui.mjs`. Business scenarios cover duplicates, conflicts, over-receipts, invoice holds, gated handovers, document exceptions and release blockers. Existing engines and their tests remain in place.
 
-### Design rationale
+## Deployment
 
-- **CRM reliability:** unique identity, timestamp normalization, no duplicate writes after replay, auditable decisions and conflict escalation.
-- **Program delivery:** transparent task ownership, validated dependency graphs, visible risk thresholds, milestones and action-driven status reports.
-- **Engineering communication:** a technical program manager can use both demos to discuss delivery expectations, integration contracts and escalation decisions.
+GitHub Pages is deployed by `.github/workflows/deploy-pages.yml`, after the quality job succeeds. Repository Settings → Pages must use **GitHub Actions** as source. The workflow publishes only an explicit allowlist of demo files and documentation. See workflow run status before assuming the public site is current.
 
-**Important limitations:** these projects are *recent portfolio demonstrations*, not production deployments or claims of prior professional software development. All contacts, teams, businesses and milestones are **fictional**. Real production systems would require security review, robust permissions, observability, persistence, reliable event identifiers and further testing. AI-assisted code development was used in creating these exercises.
+## What the demonstrations do and do not do
 
-## Privacy & license
+- New labs perform actual deterministic browser-side validation and state transitions. JSON audits and Markdown briefs are downloadable.
+- Healthcare supports a limited HL7 v2.5 message fixture and metadata association, not a full HL7/DICOM implementation.
+- ERP uses one synthetic purchase order, exact unit-price matching, whole units and MXN without tax. It does not post accounting or payments.
+- Commercial routing is illustrative and sends nothing externally.
+- Document extraction parses labeled text. It is not OCR or AI inference.
+- Customer success scores and intervention effects are explicitly assumed, not calibrated churn forecasts or verified revenue outcomes.
+- New labs reset on reload. Customer success uses browser localStorage. No confidential data should be entered.
 
-No private KMOV files, real customer records, secrets or credentials are included. MIT licensed.
+## Collaboration and commercial inquiries
 
-Created October 2026 · Christian Ortega.
+For employment, consulting, freelance projects or specialist partnerships, [contact me on LinkedIn](https://www.linkedin.com/in/christian-ortega-lugo-7523a518b/) with the process, current systems, desired result, scope and timeline. Real integrations, production security, hosting, ownership and support are scoped separately. These demos alone do not demonstrate investment traction or market validation.
+
+## Authorship, privacy and license
+
+Independent portfolio work created in October 2026 using AI-assisted engineering. All organizations, contacts and scenario results in the demonstrations are fictional. No private source code, patient records, customer data or credentials are included. The professional owner should review and be able to explain each case. MIT licensed.

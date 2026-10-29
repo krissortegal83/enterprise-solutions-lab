@@ -15,7 +15,20 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: npm run verify
+      - run: python -m unittest discover -s tests -v
   deploy:
+    needs: quality
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -31,7 +44,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html _site/
-          cp -R assets crm-integration-demo tpm-program-dashboard customer-success-intelligence _site/
+          cp -R assets crm-integration-demo tpm-program-dashboard customer-success-intelligence healthcare-integration-lab erp-procure-to-pay commercial-automation document-workflow implementation-readiness _site/
           touch _site/.nojekyll
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
