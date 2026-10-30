@@ -1,45 +1,29 @@
-# ERP Procure-to-Pay Lab
+# Compras e inventarios
 
-Receive a purchase order in partial deliveries, inspect stock movements and reconcile an invoice against price and receipt evidence.
+**Comprobar que lo pedido, recibido y facturado coincide.**
 
-**Español:** Compras e inventarios: recepción parcial, control de duplicados y conciliación de orden, recepción y factura.
+Registra entregas parciales y detecta facturas que todavía no deben aprobarse.
 
-[Live demonstration](https://krissortegal83.github.io/technical-program-management-portfolio/erp-procure-to-pay/) · [Portfolio home](../README.md)
+👉 [Probar el proyecto](https://krissortegal83.github.io/erp-process-lab/) · [Ver todos los proyectos](https://krissortegal83.github.io/) · [Hablar conmigo](https://www.linkedin.com/in/christian-ortega-lugo-7523a518b/)
 
-## Business case
+## Pruébalo en unos minutos
 
-Purchase orders, warehouse receipts and supplier invoices often disagree. Paying before reconciling quantities and prices creates avoidable operational risk.
+Recibe 6 unidades y revisa una factura de 10. Registra las 4 restantes con otra referencia y vuelve a revisarla.
 
-## Design decision
+## Qué puedes ver
 
-Use unique receipt references, block over-receipts and hold invoices when the received quantity or agreed unit price does not support them.
+Una demostración con datos ficticios. Puedes cambiar el escenario, comprobar sus reglas y ver qué sucede cuando algo no coincide. Los casos nuevos permiten descargar el historial y un resumen.
 
-## Guided demonstration
+## Mi enfoque
 
-1. Receive 6 units with reference GRN-001. Try the same reference again.
-2. Evaluate the 10-unit invoice: it is held because only 6 units arrived.
-3. Receive 4 units using GRN-002. Evaluate again: the invoice matches.
+Entender el proceso, definir reglas claras, hacer visibles los errores y comprobar el resultado antes de entregar. Este proyecto es independiente y se creó con ayuda de IA. No representa un trabajo realizado para antiguos empleadores ni resultados de clientes.
 
-## Acceptance criteria
+## Para revisar el código
 
-- Stock changes once per unique receipt.
-- Over-receipts and fractional units are blocked.
-- Quantity and price discrepancies produce explicit hold reasons.
+El proyecto usa HTML, CSS y JavaScript. Las reglas se mantienen separadas de la pantalla para poder probarlas. El catálogo conserva el origen y el historial compartido: [Enterprise Solutions Lab](https://github.com/krissortegal83/enterprise-solutions-lab).
 
-## Implementation
+Los datos son ficticios. Las conexiones hospitalarias, comerciales y ERP son simuladas dentro del alcance indicado. Una operación real necesita integraciones, permisos, almacenamiento y aceptación propios.
 
-`index.html` → shared `assets/lab-ui.mjs` → pure functions in `assets/business-rules.mjs` → in-memory state and downloadable JSON/Markdown. Business rules are tested with Node’s built-in test runner. No installation, vendor account, backend or paid service is required for the deployed demo.
+## ¿Te sirve para un problema parecido?
 
-## Scope and production gap
-
-One SKU and one PO, whole units, MXN, tax excluded, exact price matching. Independent functional model; no Epicor, Dynamics 365, accounting posting or payment connection.
-
-A production pilot requires authenticated users, appropriate permissions, durable storage, integration contract testing, monitoring, data governance, operational ownership and acceptance. Metrics are scenario outputs, not historical client results.
-
-## Validation
-
-Run `npm test` from the repository root. Run `python -m http.server 8000`, then open this folder in the browser to test the scenario and exports. See [quality evidence](../docs/QUALITY.md).
-
-## Authorship and provenance
-
-Independent project created for Christian Ortega Lugo’s portfolio using AI-assisted implementation. Fictional organizations and records only. It is not an employer deliverable, endorsement, vendor certification or claim of deployed client outcomes. The professional owner should review and be prepared to explain the design and limitations.
+Cuéntame qué proceso quieres mejorar, qué herramientas usas y cómo sabrías que el resultado funciona. [Platiquemos en LinkedIn](https://www.linkedin.com/in/christian-ortega-lugo-7523a518b/).
